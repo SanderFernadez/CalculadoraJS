@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serify;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #24296a;
+    display: flex;
+    place-items: center;
+}
+
+.calculadora {
+    background-color: #552cc2;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 350px;
+    max-width: 100%;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+    max-width: 100vh;
+    margin-left: 50%;
+    position: absolute;
+}
+
+.pantalla {
+    grid-column: 1 /-1;
+    background-color: #24296a;
+    padding: 1.5rem;
+    font-size: 2rem;
+    text-align: right;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    font-family: monospace;
+    font-weight: 600;
+    word-wrap: break-word;
+
+}
+
+.btn {
+    background-color: #552cc2;
+    color: white;
+    border: 0;
+    padding: 1.5rem .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.btn:hover {
+    background-color: #24296a;
+}
+
+#cero {
+    grid-column: span 2;
+
+}
+
+#igual {
+    grid-row: span 2;
+    background-color: rgb(250, 56, 56);
+}
+
+#igual:hover {
+    background-color: rgb(235, 81, 81);
+}
+
+.historial {
+    background-color: rgba(85, 44, 194, 0.5);
+    height: 40rem;
+    margin-left: 50px;
+    width: 25rem;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    position: relative;
+    color: wheat;
+    font-size: 20px;
+    border-radius: .5rem;
+
+}
+
+.resultados {
+
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-width: 300px;
+    max-height: 1000px;
+    height: 450px;
+    padding: 0rem;
+    margin: 0px;
+    
+    
+  
+}
+
+
+.historial .resultados ul {
+
+    list-style-type: none;
+    margin-bottom: 20rem;
+    
+
+}
+
+#borrar-historial {
+    background-color: #f52617;
+    color: white;
+    border: 0;
+    padding: 1.5rem .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+#borrar-historial:hover {
+    background-color: #f35454;
+}

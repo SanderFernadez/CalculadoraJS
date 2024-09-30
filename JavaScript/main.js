@@ -1,18 +1,18 @@
+
+
 const pantalla = document.querySelector(".pantalla");
 const botones = document.querySelectorAll(".btn");
 let historial = JSON.parse(localStorage.getItem("historial")) || [];
-
+let operacionTerminada = false;  // Variable para saber si la operación ha terminado
 
 const historialLista = document.getElementById("historial-lista");
 const borrarHistorialBtn = document.getElementById("borrar-historial");
-
 
 function actualizarHistorial(operacion) {
     historial.push(operacion);
     localStorage.setItem("historial", JSON.stringify(historial));
     mostrarHistorial();
 }
-
 
 function mostrarHistorial() {
     historialLista.innerHTML = '';
@@ -23,13 +23,11 @@ function mostrarHistorial() {
     });
 }
 
-
 borrarHistorialBtn.addEventListener("click", () => {
     localStorage.removeItem("historial");
     historial = [];
     mostrarHistorial();
 });
-
 
 mostrarHistorial();
 
@@ -37,39 +35,41 @@ botones.forEach(boton => {
     boton.addEventListener("click", () => {
         const botonApretado = boton.textContent;
 
-        if(boton.id === "c"){
+        if (boton.id === "c") {
             pantalla.textContent = "0";
-            return; 
+            operacionTerminada = false;
+            return;
         }
 
-        if (boton.id === "borrar"){
-            if(pantalla.textContent.length === 1 || pantalla.textContent === "Error" ) {
+        if (boton.id === "borrar") {
+            if (pantalla.textContent.length === 1 || pantalla.textContent === "Error") {
                 pantalla.textContent = "0";
             } else {
                 pantalla.textContent = pantalla.textContent.slice(0, -1);
             }
+            operacionTerminada = false;
             return;
         }
 
-        if (boton.id === "igual"){
-            try { 
+        if (boton.id === "igual") {
+            try {
                 const resultado = eval(pantalla.textContent);
                 const operacion = `${pantalla.textContent} = ${resultado}`;
                 pantalla.textContent = resultado;
 
-                
                 actualizarHistorial(operacion);
-            } catch { 
+                operacionTerminada = true; 
+            } catch {
                 pantalla.textContent = "Error";
             }
             return;
         }
 
-        if (pantalla.textContent === "0" || pantalla.textContent === "Error") {
+        if (pantalla.textContent === "0" || pantalla.textContent === "Error" || operacionTerminada) {
             pantalla.textContent = botonApretado;
+            operacionTerminada = false; 
         } else {
             pantalla.textContent += botonApretado;
         }
     });
 });
-   
